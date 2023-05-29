@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PopupBackWrapper, PopupContainer } from "./index.sc";
 import PropTypes from "prop-types";
 import { styled } from "styled-components";
 

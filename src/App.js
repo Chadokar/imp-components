@@ -6,6 +6,8 @@ import MenuTile from "./components/MenuTile";
 import Navbar, { NavLeft } from "./components/Navbar";
 import Popover from "./components/Popover";
 import MyComponent from "./components/New";
+import DashboardPopup from "./components/dashboard-popup";
+import { useState } from "react";
 
 const Compoarr = ({ key }) => {
   return (
@@ -243,6 +245,7 @@ const PopContent = () => {
 };
 
 function App() {
+  const [show, setShow] = useState(false);
   return (
     <>
       {/* <div
@@ -253,11 +256,19 @@ function App() {
         <Box Components={Childs} />
         <MenuTile title={"Newsletters"} />
         <Navbar LeftBox={<LeftBox />} RightBox={<RightBox />} />
-      </div>
+      </div> */}
       <div style={{ margin: 200 }}>
+        <button onClick={() => setShow(!show)}>Click here</button>
+        <DashboardPopup
+          toggler={setShow}
+          open={show}
+          popContent={<h1>his</h1>}
+        />
+      </div>
+      {/* <div style={{ margin: 200 }}>
         <Popover content={<PopContent />} />
       </div> */}
-      <MyComponent />
+      {/* <MyComponent /> */}
     </>
   );
 }
