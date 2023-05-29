@@ -1,6 +1,35 @@
 import React, { useEffect, useRef, useState } from "react";
 import { PopupBackWrapper, PopupContainer } from "./index.sc";
 import PropTypes from "prop-types";
+import { styled } from "styled-components";
+
+export const PopupBackWrapper = styled.div`
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: rgba(160, 167, 198, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  transition: 0.3s ease-in-out;
+  z-index: 1000;
+`;
+
+export const PopupContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: ${(props) =>
+    props.open ? "translate(-50%, -50%)" : "translate(-50%,0)"};
+  box-sizing: border-box;
+  transition: 0.3s ease-in-out;
+  background: #ffffff;
+  box-shadow: 0px 5px 10px rgba(108, 73, 172, 0.3);
+  border-radius: 20px;
+  padding: 1.5rem 1.5rem;
+  gap: 10px;
+  z-index: 1000;
+`;
 
 const DashboardPopup = ({
   popContent = <></>,
