@@ -8,6 +8,7 @@ import Popover from "./components/Popover";
 import MyComponent from "./components/New";
 import DashboardPopup from "./components/dashboard-popup";
 import { useState } from "react";
+import SearchPopup from "./components/SearchPopup";
 
 const Compoarr = ({ key }) => {
   return (
@@ -262,7 +263,8 @@ function App() {
         <DashboardPopup
           toggler={setShow}
           open={show}
-          popContent={<h1>his</h1>}
+          popContent={<SearchPopup />}
+          padding="0px"
         />
       </div>
       {/* <div style={{ margin: 200 }}>

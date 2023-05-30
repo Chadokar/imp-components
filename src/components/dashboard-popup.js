@@ -25,7 +25,7 @@ export const PopupContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 5px 10px rgba(108, 73, 172, 0.3);
   border-radius: 20px;
-  padding: 1.5rem 1.5rem;
+  padding: ${(props) => props.padding};
   gap: 10px;
   z-index: 1000;
 `;
@@ -34,6 +34,7 @@ const DashboardPopup = ({
   popContent = <></>,
   open = true,
   toggler = () => {},
+  padding = "1.5rem 1.5rem",
 }) => {
   const popupRef = useRef();
   const [newOpen, setNewOpen] = useState(false);
@@ -74,7 +75,7 @@ const DashboardPopup = ({
     <>
       {open && (
         <PopupBackWrapper onClick={handleClickOutside}>
-          <PopupContainer open={newOpen} ref={popupRef}>
+          <PopupContainer padding={padding} open={newOpen} ref={popupRef}>
             {popContent}
           </PopupContainer>
         </PopupBackWrapper>
@@ -92,6 +93,7 @@ DashboardPopup.propTypes = {
   ]),
   open: PropTypes.bool,
   toggler: PropTypes.func,
+  padding: PropTypes.string,
 };
 
 export default DashboardPopup;
