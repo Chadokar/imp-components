@@ -257,6 +257,8 @@ const ContentBox = ({ content, ind, handler }) => {
 
 ContentBox.propTypes = {
   content: Proptypes.object,
+  ind: Proptypes.number,
+  handler: Proptypes.func,
 };
 
 const SearchPopup = ({
