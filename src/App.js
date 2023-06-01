@@ -9,6 +9,8 @@ import MyComponent from "./components/New";
 import DashboardPopup from "./components/dashboard-popup";
 import { useState } from "react";
 import SearchPopup from "./components/SearchPopup";
+import Sentiments from "./components/Sentiments";
+import Theme from "./components/Theme";
 
 const Compoarr = ({ key }) => {
   return (
@@ -212,6 +214,15 @@ const DoneText = styled.p`
   color: #ffffff;
 `;
 
+const OuterBox = styled.div`
+  box-sizing: border-box;
+  width: 750px;
+  background: #ffffff;
+  box-shadow: 0px 8px 8px rgba(153, 153, 153, 0.12);
+  border-radius: 15px;
+  padding: 2rem;
+`;
+
 const PopContent = () => {
   return (
     <ContentWrapper>
@@ -258,7 +269,7 @@ function App() {
         <MenuTile title={"Newsletters"} />
         <Navbar LeftBox={<LeftBox />} RightBox={<RightBox />} />
       </div> */}
-      <div style={{ margin: 200 }}>
+      {/* <div style={{ margin: 200 }}>
         <button onClick={() => setShow(!show)}>Click here</button>
         <DashboardPopup
           toggler={setShow}
@@ -266,11 +277,21 @@ function App() {
           popContent={<SearchPopup />}
           padding="0px"
         />
-      </div>
+      </div> */}
       {/* <div style={{ margin: 200 }}>
         <Popover content={<PopContent />} />
       </div> */}
       {/* <MyComponent /> */}
+      <div style={{ margin: 300 }}>
+        <OuterBox>
+          <Sentiments />
+        </OuterBox>
+      </div>
+      <div style={{ margin: 300 }}>
+        <OuterBox style={{ justifyContent: "flex-end", display: "flex" }}>
+          <Theme />
+        </OuterBox>
+      </div>
     </>
   );
 }
