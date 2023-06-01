@@ -133,3 +133,44 @@ export const SearchIcon = () => {
     </svg>
   );
 };
+
+export const Calender = () => {
+  return (
+    <svg
+      width="17"
+      height="16"
+      viewBox="0 0 17 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13.528 2.6665H4.19466C3.45828 2.6665 2.86133 3.26346 2.86133 3.99984V13.3332C2.86133 14.0696 3.45828 14.6665 4.19466 14.6665H13.528C14.2644 14.6665 14.8613 14.0696 14.8613 13.3332V3.99984C14.8613 3.26346 14.2644 2.6665 13.528 2.6665Z"
+        stroke="white"
+        stroke-width="1.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M11.5283 1.3335V4.00016"
+        stroke="white"
+        stroke-width="1.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.19434 1.3335V4.00016"
+        stroke="white"
+        stroke-width="1.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M2.86133 6.6665H14.8613"
+        stroke="white"
+        stroke-width="1.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};

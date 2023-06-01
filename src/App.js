@@ -11,6 +11,7 @@ import { useState } from "react";
 import SearchPopup from "./components/SearchPopup";
 import Sentiments from "./components/Sentiments";
 import Theme from "./components/Theme";
+import Duration from "./components/Duration";
 
 const Compoarr = ({ key }) => {
   return (
@@ -291,6 +292,9 @@ function App() {
         <OuterBox style={{ justifyContent: "flex-end", display: "flex" }}>
           <Theme />
         </OuterBox>
+      </div>
+      <div style={{ margin: 400 }}>
+        <Duration />
       </div>
     </>
   );
