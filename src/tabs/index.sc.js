@@ -8,6 +8,10 @@ export const Container = styled.div`
 export const TabsWrapper = styled.div`
   position: relative;
   width: 100%;
+  border: 1.2px solid #eceff5;
+  padding: 1rem;
+  padding-bottom: 0;
+  border-width: 1.2px 0 1.2px 0;
 
   ::before,
   ::after {
@@ -73,6 +77,8 @@ export const TabContainer = styled.div`
   cursor: pointer;
 
   justify-content: center;
+  padding-bottom: 0.625rem;
+  width: ${(props) => props.width || "fit-content"};
 
   ${({ variant, active, activeColor, inactiveColor, theme }) =>
     getVariantStyles(variant, active, activeColor, inactiveColor, theme)}
@@ -111,10 +117,11 @@ const getVariantStyles = (
       return `border-bottom: ${active ? "4px" : "4px"} solid ${
         active ? activeColor || theme.main : "transparent"
       };
-      padding-bottom: .69rem;
+      padding-bottom: .7rem;
       color: ${
         active ? activeColor || theme.main : inactiveColor || theme.contrastText
       };
+      font-weight: ${active ? "600" : "400"}
     `;
     default:
       return `
@@ -134,12 +141,6 @@ const getVariantStyles = (
 };
 
 export const Title = styled.div`
-  font-size: 0.81rem;
-  font-weight: 400;
-
-  font-style: normal;
-  line-height: 1.19rem;
-  text-align: center;
   position: relative;
   p {
     margin: 0;

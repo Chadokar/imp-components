@@ -8,7 +8,14 @@ const theme = {
   contrastText: "blue",
 };
 
-const Tabs = ({ items, onChange, variant, activeColor, inactiveColor }) => {
+const Tabs = ({
+  items,
+  onChange,
+  variant,
+  activeColor,
+  inactiveColor,
+  widthItem,
+}) => {
   const [activeTab, setActiveTab] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasOverflow, setHasOverflow] = useState(false);
@@ -96,8 +103,9 @@ const Tabs = ({ items, onChange, variant, activeColor, inactiveColor }) => {
               activeColor={activeColor}
               inactiveColor={inactiveColor}
               theme={theme}
+              width={widthItem}
             >
-              <Styles.Title> {item.title}h</Styles.Title>
+              <Styles.Title> {item.title}</Styles.Title>
             </Styles.TabContainer>
           ))}
         </Styles.TabsContainer>
@@ -156,6 +164,7 @@ Tabs.propTypes = {
   variant: PropTypes.oneOf(["underline", "card"]),
   activeColor: PropTypes.string,
   inactiveColor: PropTypes.string,
+  widthItem: PropTypes.string,
 };
 
 Tabs.defaultProps = {

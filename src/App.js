@@ -299,7 +299,7 @@ function App() {
       <div style={{ margin: 400 }}>
         <Duration />
       </div>
-      <div style={{ margin: 200, background: "#F2F2F2" }}>
+      <div style={{ margin: 200 }}>
         <Check />
       </div>
       <div style={{ margin: 200, background: "#F2F2F2" }}>
