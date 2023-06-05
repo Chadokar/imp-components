@@ -13,6 +13,8 @@ import Sentiments from "./components/Sentiments";
 import Theme from "./components/Theme";
 import Duration from "./components/Duration";
 import Check from "./tabs/Check";
+import SmallCompL_1 from "./components/SmallCompL_1";
+import SmallCompL_0 from "./components/SmallCompL_0";
 
 const Compoarr = ({ key }) => {
   return (
@@ -299,6 +301,12 @@ function App() {
       </div>
       <div style={{ margin: 200, background: "#F2F2F2" }}>
         <Check />
+      </div>
+      <div style={{ margin: 200, background: "#F2F2F2" }}>
+        <SmallCompL_1 />
+      </div>
+      <div style={{ margin: 200, background: "#F2F2F2", height: "100px" }}>
+        <SmallCompL_0 />
       </div>
     </>
   );
