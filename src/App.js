@@ -12,6 +12,7 @@ import SearchPopup from "./components/SearchPopup";
 import Sentiments from "./components/Sentiments";
 import Theme from "./components/Theme";
 import Duration from "./components/Duration";
+import Check from "./tabs/Check";
 
 const Compoarr = ({ key }) => {
   return (
@@ -295,6 +296,9 @@ function App() {
       </div>
       <div style={{ margin: 400 }}>
         <Duration />
+      </div>
+      <div style={{ margin: 200, background: "#F2F2F2" }}>
+        <Check />
       </div>
     </>
   );
