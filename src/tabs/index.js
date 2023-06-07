@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-import * as Styles from "./index.sc";
+import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import * as Styles from './index.sc';
 
 const theme = {
-  grey: "grey",
-  main: "pink",
-  contrastText: "blue",
+  primary: '#675ef2',
+  main: '#8676FF',
+  contrastText: 'blue',
 };
 
 const Tabs = ({
@@ -15,61 +15,44 @@ const Tabs = ({
   activeColor,
   inactiveColor,
   widthItem,
+  isContent,
 }) => {
   const [activeTab, setActiveTab] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hasOverflow, setHasOverflow] = useState(false);
-  const [menuItems, setMenuItems] = useState([]);
   const [showLeftShadow, setShowLeftShadow] = useState(false);
   const [showRightShadow, setShowRightShadow] = useState(false);
   const tabsRef = useRef(null);
   const activeTabRef = useRef(null);
 
   // Check if there's overflow on mount and on resize
-  useEffect(() => {
-    const handleResize = () => {
-      setHasOverflow(tabsRef.current.scrollWidth > tabsRef.current.clientWidth);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
-
-  useEffect(() => {
-    observeIntersection();
-  }, [isMenuOpen]);
 
   useEffect(() => {
     if (activeTabRef.current) {
       activeTabRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
+        behavior: 'smooth',
+        block: 'nearest',
       });
     }
   }, [activeTab]);
-  const observeIntersection = () => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const itemsAfterFilter = entries.map((entry, index) => {
-          if (entry.isIntersecting) {
-            return { ...items[index], visible: true };
-          } else {
-            return { ...items[index], visible: false };
-          }
-        });
-        setMenuItems(itemsAfterFilter.filter((item) => !item.visible));
-      },
-      { root: tabsRef.current, threshold: 1 }
-    );
-    const tabs = Array.from(tabsRef.current.children);
-    tabs.forEach((tab) => observer.observe(tab));
-    return () => {
-      observer.disconnect();
-    };
-  };
+  // const observeIntersection = () => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       const itemsAfterFilter = entries.map((entry, index) => {
+  //         if (entry.isIntersecting) {
+  //           return { ...items[index], visible: true };
+  //         } else {
+  //           return { ...items[index], visible: false };
+  //         }
+  //       });
+  //       setMenuItems(itemsAfterFilter.filter((item) => !item.visible));
+  //     },
+  //     { root: tabsRef.current, threshold: 1 }
+  //   );
+  //   const tabs = Array.from(tabsRef.current.children);
+  //   tabs.forEach((tab) => observer.observe(tab));
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // };
 
   const onChangeTab = (index) => {
     setActiveTab(index);
@@ -77,7 +60,6 @@ const Tabs = ({
   };
 
   const handleScroll = () => {
-    observeIntersection();
     setShowLeftShadow(tabsRef.current.scrollLeft > 0);
     setShowRightShadow(
       tabsRef.current.scrollLeft <
@@ -109,43 +91,13 @@ const Tabs = ({
             </Styles.TabContainer>
           ))}
         </Styles.TabsContainer>
-        {hasOverflow && (
-          <Styles.Ellipsis
-            variant={variant}
-            onMouseEnter={() => setIsMenuOpen(true)}
-            onMouseLeave={() => setIsMenuOpen(false)}
-          >
-            ...
-          </Styles.Ellipsis>
-        )}
-
-        {false && (
-          <Styles.MenuWrapper
-            onMouseEnter={() => setIsMenuOpen(true)}
-            onMouseLeave={() => setIsMenuOpen(false)}
-            isMenuOpen={isMenuOpen}
-          >
-            {menuItems.map((item, index) => (
-              <Styles.MenuItem
-                key={index}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setActiveTab(item.id);
-                }}
-                active={item.id === activeTab}
-                activeColor={activeColor}
-                inactiveColor={inactiveColor}
-              >
-                {item.title}
-              </Styles.MenuItem>
-            ))}
-          </Styles.MenuWrapper>
-        )}
       </Styles.TabsWrapper>
-      {variant !== "underline" && <Styles.HorizontalLine />}
-      <Styles.TabContent variant={variant}>
-        {items[activeTab].content}
-      </Styles.TabContent>
+      {variant !== 'underline' && <Styles.HorizontalLine />}
+      {isContent && (
+        <Styles.TabContent variant={variant}>
+          {items[activeTab].content}
+        </Styles.TabContent>
+      )}
     </Styles.Container>
   );
 };
@@ -161,14 +113,15 @@ Tabs.propTypes = {
     })
   ).isRequired,
   onChange: PropTypes.func,
-  variant: PropTypes.oneOf(["underline", "card"]),
+  variant: PropTypes.oneOf(['underline', 'card']),
   activeColor: PropTypes.string,
   inactiveColor: PropTypes.string,
   widthItem: PropTypes.string,
+  isContent: PropTypes.bool,
 };
 
 Tabs.defaultProps = {
-  variant: "underline",
+  variant: 'underline',
 };
 
 export default Tabs;
