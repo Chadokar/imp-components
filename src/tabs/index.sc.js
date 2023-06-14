@@ -1,4 +1,32 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+
+export const tabs = [
+  {
+    id: 0,
+    title: "Tab 1",
+    content: "Tab 1 content",
+  },
+  {
+    id: 1,
+    title: "Tab 2",
+    content: "Tab 2 content",
+  },
+  {
+    id: 2,
+    title: "Tab 3",
+    content: "Tab 3 content",
+  },
+  {
+    id: 3,
+    title: "Tab 4",
+    content: "Tab 4 content",
+  },
+  {
+    id: 4,
+    title: "Tab 5",
+    content: "Tab 5 content",
+  },
+];
 
 export const Container = styled.div`
   display: flex;
@@ -9,14 +37,16 @@ export const Container = styled.div`
 export const TabsWrapper = styled.div`
   position: relative;
   width: 100%;
-  border: 1.2px solid #eceff5;
-  padding: 1rem;
+  border: ${(props) =>
+    props.variant === "underline" ? "1.2px solid #eceff5" : ""};
+  padding: ${(props) => (props.variant === "underline" ? "1rem" : "0")};
   padding-bottom: 0;
-  border-width: 1.2px 0 1.2px 0;
+  border-width: ${(props) =>
+    props.variant === "underline" ? "1.2px 0 1.2px 0" : "0px"};
 
   ::before,
   ::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -43,15 +73,13 @@ export const TabsContainer = styled.div`
   align-items: flex-end;
   white-space: nowrap;
   width: 100%;
-
+  gap: ${(props) => (props.variant === "card" ? "0.5rem" : "0")};
   position: relative;
-  bottom: -0.96px;
   overflow-x: auto;
   z-index: 1;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
   scrollbar-width: none;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -62,9 +90,9 @@ export const TabContainer = styled.div`
 
   display: inline-block;
 
-  margin-left: ${({ variant }) => (variant === 'card' ? '4.96px' : '0')};
+  // margin-left: ${({ variant }) => (variant === "card" ? "4.96px" : "0")};
   ${({ variant }) =>
-    variant === 'underline' &&
+    variant === "underline" &&
     `
 
     :first-child {
@@ -80,15 +108,14 @@ export const TabContainer = styled.div`
 
   justify-content: center;
   padding-bottom: 0.625rem;
-  min-width: ${(props) => props.width || 'fit-content'};
+  min-width: ${(props) => props.width || "fit-content"};
 
   ${({ variant, active, activeColor, inactiveColor, theme }) =>
     getVariantStyles(variant, active, activeColor, inactiveColor, theme)}
   ${({ isDisabled }) =>
     isDisabled && {
-      cursor: 'not-allowed ',
-
-      opacity: '0.5',
+      cursor: "not-allowed ",
+      opacity: "0.5",
     }};
 `;
 
@@ -100,30 +127,30 @@ const getVariantStyles = (
   theme
 ) => {
   switch (variant) {
-    case 'card':
+    case "card":
       return `
-          border: .96px solid ${theme.primary};
-          border-bottom: ${
-            active ? '.96px solid #fff' : `.96px solid ${theme.primary}`
+          // border-bottom: ${
+            active ? ".96px solid #fff" : `.96px solid ${theme.primary}`
           };
-          padding: .5rem .88rem;
-          border-radius: 4px 4px 0px 0px;
-          background-color: ${active ? '#fff' : '#F2F6FA'};
+          padding: .5rem .93rem;
+          border-radius: 10px;
+          text-align: center;
+          background-color: ${active ? "#675EF2" : "transparent"};
           color: ${
             active
               ? activeColor || theme.main
               : inactiveColor || theme.contrastText
           };
         `;
-    case 'underline':
-      return `border-bottom: ${active ? '4px' : '4px'} solid ${
-        active ? activeColor || theme.main : 'transparent'
+    case "underline":
+      return `border-bottom: ${active ? "4px" : "4px"} solid ${
+        active ? activeColor || theme.main : "transparent"
       };
       padding-bottom: .7rem;
       color: ${
         active ? activeColor || theme.main : inactiveColor || theme.contrastText
       };
-      font-weight: ${active ? '600' : '400'}
+      font-weight: ${active ? "600" : "400"}
     `;
     default:
       return `
@@ -150,7 +177,7 @@ export const Title = styled.div`
 `;
 
 export const HorizontalLine = styled.div`
-  content: '';
+  content: "";
   width: 100%;
   height: 0.96px;
   background-color: #d9d9d9;
@@ -169,15 +196,15 @@ export const Ellipsis = styled.div`
   cursor: pointer;
   user-select: none;
   ${({ variant }) =>
-    variant === 'card' && {
-      backgroundColor: '#F2F6FA',
-      border: '.96px solid #d9d9d9',
-      borderBottom: 'none',
-      borderRadius: ' 4px 4px 0px 0px',
+    variant === "card" && {
+      backgroundColor: "#F2F6FA",
+      border: ".96px solid #d9d9d9",
+      borderBottom: "none",
+      borderRadius: " 4px 4px 0px 0px",
     }}
 
   &::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 40px;
     position: absolute;
@@ -185,7 +212,7 @@ export const Ellipsis = styled.div`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.main || '#e20074'};
+    color: ${({ theme }) => theme.main || "#e20074"};
   }
 `;
 
@@ -194,13 +221,13 @@ export const TabContent = styled.div`
   background-color: #fff;
 
   ${({ variant }) =>
-    variant !== 'underline' &&
+    variant !== "underline" &&
     ` border: .96px solid #d9d9d9;
     border-top: none;
 
     `}
   ${({ variant }) =>
-    variant === 'underline' &&
+    variant === "underline" &&
     `
   background-color: transparent;
   padding: .75rem 0;
@@ -250,6 +277,6 @@ export const MenuItem = styled.div`
       : `color: ${inactiveColor || theme.contrastText}`};
 
   &:hover {
-    color: ${({ theme }) => '' || '#e20074'};
+    color: ${({ theme }) => "" || "#e20074"};
   }
 `;

@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import * as Styles from './index.sc';
+import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
+import * as Styles from "./index.sc";
 
 const theme = {
-  primary: '#675ef2',
-  main: '#8676FF',
-  contrastText: 'blue',
+  primary: "#675ef2",
+  main: "#8676FF",
+  contrastText: "blue",
 };
 
 const Tabs = ({
@@ -15,7 +15,7 @@ const Tabs = ({
   activeColor,
   inactiveColor,
   widthItem,
-  isContent,
+  isContent = false,
 }) => {
   const [activeTab, setActiveTab] = useState(0);
   const [showLeftShadow, setShowLeftShadow] = useState(false);
@@ -28,8 +28,8 @@ const Tabs = ({
   useEffect(() => {
     if (activeTabRef.current) {
       activeTabRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
+        behavior: "smooth",
+        block: "nearest",
       });
     }
   }, [activeTab]);
@@ -70,10 +70,15 @@ const Tabs = ({
   return (
     <Styles.Container className="tabs-asmtabs">
       <Styles.TabsWrapper
+        variant={variant}
         showLeftShadow={showLeftShadow}
         showRightShadow={showRightShadow}
       >
-        <Styles.TabsContainer ref={tabsRef} onScroll={handleScroll}>
+        <Styles.TabsContainer
+          variant={variant}
+          ref={tabsRef}
+          onScroll={handleScroll}
+        >
           {items.map((item, i) => (
             <Styles.TabContainer
               key={i}
@@ -92,7 +97,7 @@ const Tabs = ({
           ))}
         </Styles.TabsContainer>
       </Styles.TabsWrapper>
-      {variant !== 'underline' && <Styles.HorizontalLine />}
+      {variant !== "underline" && isContent && <Styles.HorizontalLine />}
       {isContent && (
         <Styles.TabContent variant={variant}>
           {items[activeTab].content}
@@ -113,7 +118,7 @@ Tabs.propTypes = {
     })
   ).isRequired,
   onChange: PropTypes.func,
-  variant: PropTypes.oneOf(['underline', 'card']),
+  variant: PropTypes.oneOf(["underline", "card"]),
   activeColor: PropTypes.string,
   inactiveColor: PropTypes.string,
   widthItem: PropTypes.string,
@@ -121,7 +126,7 @@ Tabs.propTypes = {
 };
 
 Tabs.defaultProps = {
-  variant: 'underline',
+  variant: "underline",
 };
 
 export default Tabs;

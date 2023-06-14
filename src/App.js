@@ -12,9 +12,10 @@ import SearchPopup from "./components/SearchPopup";
 import Sentiments from "./components/Sentiments";
 import Theme from "./components/Theme";
 import Duration from "./components/Duration";
-import Check from "./tabs/Check";
 import SmallCompL_1 from "./components/SmallCompL_1";
 import SmallCompL_0 from "./components/SmallCompL_0";
+import Tabs from "./tabs";
+import { tabs } from "./tabs/index.sc";
 
 const Compoarr = ({ key }) => {
   return (
@@ -299,8 +300,13 @@ function App() {
       <div style={{ margin: 400 }}>
         <Duration />
       </div>
-      <div style={{ margin: 200 }}>
-        <Check />
+      <div style={{ margin: 200, background: "#F2F2F2" }}>
+        <Tabs
+          items={tabs}
+          activeColor={"#FFFFFF"}
+          inactiveColor={"#585858"}
+          variant="card"
+        />
       </div>
       <div style={{ margin: 200, background: "#F2F2F2" }}>
         <SmallCompL_1 />
